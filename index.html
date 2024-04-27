@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-signin-client_id" content="281077271172-bhcu5od52gjkha6vl0539pc5kev48ana.apps.googleusercontent.com">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- My CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <title>My Portfolio | Deni Yayan Kuswandi</title>
+    <link rel="shortcut icon" href="/img/icon.png">
+
+    <!-- Link Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+    <!-- Link CSVtoJSON -->
+    <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script src="/js/login.js" async defer></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+  </head>
+  <body id="home">
+    <div class="g-signin2" data-onsuccess="onSignIn" hidden></div>
+    <button onclick="topFunction()" id="toTop" title="Go to top"><i class="bi bi-caret-up-fill"></i></button>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-mynavbar shadow-sm fixed-top">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Auth
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item">
+                  <div id="gSignInWrapper">
+                    <span class="label"></span>
+                    <div id="customBtn" class="customGPlusSignIn btn-login">
+                      <span class="icon"></span>
+                      <span class="buttonText">SignIn Google</span>
+                    </div>
+                    <div class="btn-login-label" hidden>
+                      <span class="icon"></span>
+                      <span class="buttonText" id="g_name"></span>
+                    </div>
+                  </div>
+                </a>
+                <a class="dropdown-item" id="logout" onclick="signOut();">Log Out</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Jumbroton -->
+    <section class="jumbotron">
+      <div class="row m-0" id="parallax">
+        <div class="col-md-6 text-center">
+          <img src="img/pas.jpg" alt="deni yayan" width="340" class="img-my-thumbnail box" />
+        </div>
+        <div class="col-md-6 maint-text">
+          <h1 class="display-4 text-content pt-2" >Hi,</h1>
+          <h1 class="display-4">I'm Deni yayan kuswandi</h1>
+          <p class="lead">College Student <span class="continue-lead"></span></p>
+          <div class="social-media mb-3">
+            <span class="badge bg-white shadow mb-1">
+              <a href="https://instagram.com/deni.yayan?utm_medium=copy_link" target="_blank" style="text-decoration-color: black;"><i class="bi bi-instagram color-ig"></i><p class="text-dark d-inline"> Instagram</p></a>
+            </span>
+            <span class="badge bg-white shadow mb-1">
+              <a href="https://twitter.com/deni_yayann?t=EUZwD2U28nlt2q3DS_AoEg&s=09" target="_blank" style="text-decoration-color: black;"><i class="bi bi-twitter color-tw"></i><p class="text-dark d-inline"> Twitter</p></a>
+            </span>
+            <span class="badge bg-white shadow mb-1">
+              <a href="https://www.facebook.com/deni.yayan.1" target="_blank" style="text-decoration-color: black;"><i class="bi bi-facebook color-fb"></i><p class="text-dark d-inline"> Facebook</p></a>
+            </span>
+            <span class="badge bg-white shadow mb-1">
+              <a href="https://github.com/deni666" style="text-decoration-color: black;"><i class="bi bi-github colot-git"></i><p class="text-dark d-inline"> Github</p></a>
+            </span>
+          </div>
+          <button type="button" class="btn btn-outline-dark shadow-sm" onclick="window.location.href='#about'">Hire Me</button>
+          <button type="button" class="btn btn-outline-light shadow-sm" onclick="window.location.href='#contact'">Contact</button>
+          <button type="button" class="btn btn-outline-like shadow-sm" id="btn-outline-like" onclick="like(this)"><i class="bi bi-hand-thumbs-up"></i> <span id="like">Like</span></button>
+          <button type="button" class="btn btn-outline-like shadow-sm" id="like-display" hidden><i class="bi bi-hand-thumbs-up"></i> <span id="like-d">Like</span></button>
+        </div>
+      </div>
+      <svg id="jumbot-wave" viewBox="0 0 900 200">
+        <path id="path-1" d="M0 68L15 67.7C30 67.3 60 66.7 90 63.5C120 60.3 150 54.7 180 56.5C210 58.3 240 67.7 270 70C300 72.3 330 67.7 360 66.5C390 65.3 420 67.7 450 72.5C480 77.3 510 84.7 540 87C570 89.3 600 86.7 630 86C660 85.3 690 86.7 720 83C750 79.3 780 70.7 810 66.2C840 61.7 870 61.3 885 61.2L900 61L900 201L885 201C870 201 840 201 810 201C780 201 750 201 720 201C690 201 660 201 630 201C600 201 570 201 540 201C510 201 480 201 450 201C420 201 390 201 360 201C330 201 300 201 270 201C240 201 210 201 180 201C150 201 120 201 90 201C60 201 30 201 15 201L0 201Z" fill="#dfdfe2" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path>
+        <path id="path-2" d="M0 137L15 133C30 129 60 121 90 115.3C120 109.7 150 106.3 180 107.5C210 108.7 240 114.3 270 118.3C300 122.3 330 124.7 360 123.2C390 121.7 420 116.3 450 112.7C480 109 510 107 540 109.5C570 112 600 119 630 119.3C660 119.7 690 113.3 720 107.2C750 101 780 95 810 99.2C840 103.3 870 117.7 885 124.8L900 132L900 201L885 201C870 201 840 201 810 201C780 201 750 201 720 201C690 201 660 201 630 201C600 201 570 201 540 201C510 201 480 201 450 201C420 201 390 201 360 201C330 201 300 201 270 201C240 201 210 201 180 201C150 201 120 201 90 201C60 201 30 201 15 201L0 201Z" fill="#efeff0" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path>
+        <path id="path-3" d="M0 165L15 160.3C30 155.7 60 146.3 90 141.3C120 136.3 150 135.7 180 134.7C210 133.7 240 132.3 270 133.7C300 135 330 139 360 145.8C390 152.7 420 162.3 450 164C480 165.7 510 159.3 540 157C570 154.7 600 156.3 630 156.3C660 156.3 690 154.7 720 151.5C750 148.3 780 143.7 810 144C840 144.3 870 149.7 885 152.3L900 155L900 201L885 201C870 201 840 201 810 201C780 201 750 201 720 201C690 201 660 201 630 201C600 201 570 201 540 201C510 201 480 201 450 201C420 201 390 201 360 201C330 201 300 201 270 201C240 201 210 201 180 201C150 201 120 201 90 201C60 201 30 201 15 201L0 201Z" fill="#ffffff" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path>
+      </svg>
+    </section>
+    <!-- End Jumbroton -->
+
+    <!-- About -->
+    <section id="about">
+      <div class="container-fluid div-about pb-5">
+        <div class="row text-center mb-5">
+          <div class="col" data-aos="fade-up">
+            <h2>About Me</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center align-items-center fs-5">
+          <div class="col-md-5 mb-5 text-center" data-aos="fade-up" data-aos-delay="150">
+            <div class="w-100 h-100">
+            </div>
+          </div>
+          <div class="col-md-5 mb-5" style="text-align: justify;" data-aos="fade-up" data-aos-delay="150">
+            Nama Saya Deni Yayan Kuswandi. Salah satu orang random yang hidup di akhir zaman. Hobi Saya <span class="text-primary">nongkrong</span> dan bermain <span class="text-danger">game</span>
+            <i class="bi bi-controller text-danger"></i>. Tidak ada yang istimewa dari kehidupan Saya dan Saya lebih suka menghabiskan waktu nongkrong bersama teman saya.
+          </div>
+          <div class="col-md-5 mb-5 text-center" data-aos="fade-up" data-aos-delay="150" id="college1">
+            <div class="w-100">
+            </div>
+          </div>
+          <div class="col-md-5 mb-5" style="text-align: justify;" data-aos="fade-up" data-aos-delay="150">
+            Saya siswa jurusan Rekayasa perangkat lunak dari SMK <span class="text-warning">PELITA AL-IKHSAN</span> dan Saya masih menjadi seorang web developer pemula. Semoga kedepannya Saya bisa meningkatkan Skill programming saya
+            menjadi programmer yang lebih handal.
+          </div>
+          <div class="col-md-5 mb-5 text-center" data-aos="fade-up" data-aos-delay="150" id="college2">
+            <div class="w-100">
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg viewBox="0 0 900 200">
+        <path d="M0 56L25 58.8C50 61.7 100 67.3 150 66.5C200 65.7 250 58.3 300 57.2C350 56 400 61 450 64C500 67 550 68 600 70.5C650 73 700 77 750 76.8C800 76.7 850 72.3 875 70.2L900 68L900 201L875 201C850 201 800 201 750 201C700 201 650 201 600 201C550 201 500 201 450 201C400 201 350 201 300 201C250 201 200 201 150 201C100 201 50 201 25 201L0 201Z" fill="#f4f4f5" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path>
+        <path d="M0 89L25 94C50 99 100 109 150 114.7C200 120.3 250 121.7 300 116.3C350 111 400 99 450 95.2C500 91.3 550 95.7 600 102.7C650 109.7 700 119.3 750 123.7C800 128 850 127 875 126.5L900 126L900 201L875 201C850 201 800 201 750 201C700 201 650 201 600 201C550 201 500 201 450 201C400 201 350 201 300 201C250 201 200 201 150 201C100 201 50 201 25 201L0 201Z" fill="#eaeaeb" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path>
+        <path d="M0 147L25 147.5C50 148 100 149 150 150.2C200 151.3 250 152.7 300 155.2C350 157.7 400 161.3 450 162.3C500 163.3 550 161.7 600 157.5C650 153.3 700 146.7 750 141.8C800 137 850 134 875 132.5L900 131L900 201L875 201C850 201 800 201 750 201C700 201 650 201 600 201C550 201 500 201 450 201C400 201 350 201 300 201C250 201 200 201 150 201C100 201 50 201 25 201L0 201Z" fill="#dfdfe2" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path>
+      </svg>
+    </section>
+    <!-- End About -->
+
+    
+      <svg viewBox="0 0 900 200">
+        <path d="M0 100L21.5 96.2C43 92.3 86 84.7 128.8 84.7C171.7 84.7 214.3 92.3 257.2 94.2C300 96 343 92 385.8 95.5C428.7 99 471.3 110 514.2 107.8C557 105.7 600 90.3 642.8 83.3C685.7 76.3 728.3 77.7 771.2 82.8C814 88 857 97 878.5 101.5L900 106L900 201L878.5 201C857 201 814 201 771.2 201C728.3 201 685.7 201 642.8 201C600 201 557 201 514.2 201C471.3 201 428.7 201 385.8 201C343 201 300 201 257.2 201C214.3 201 171.7 201 128.8 201C86 201 43 201 21.5 201L0 201Z" fill="#eaeaeb" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path>
+        <path d="M0 128L21.5 125.3C43 122.7 86 117.3 128.8 115C171.7 112.7 214.3 113.3 257.2 116.7C300 120 343 126 385.8 127.2C428.7 128.3 471.3 124.7 514.2 125.5C557 126.3 600 131.7 642.8 134C685.7 136.3 728.3 135.7 771.2 136C814 136.3 857 137.7 878.5 138.3L900 139L900 201L878.5 201C857 201 814 201 771.2 201C728.3 201 685.7 201 642.8 201C600 201 557 201 514.2 201C471.3 201 428.7 201 385.8 201C343 201 300 201 257.2 201C214.3 201 171.7 201 128.8 201C86 201 43 201 21.5 201L0 201Z" fill="#f4f4f5" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path>
+        <path d="M0 174L21.5 171.2C43 168.3 86 162.7 128.8 162.3C171.7 162 214.3 167 257.2 169C300 171 343 170 385.8 167C428.7 164 471.3 159 514.2 158.3C557 157.7 600 161.3 642.8 160.7C685.7 160 728.3 155 771.2 156.3C814 157.7 857 165.3 878.5 169.2L900 173L900 201L878.5 201C857 201 814 201 771.2 201C728.3 201 685.7 201 642.8 201C600 201 557 201 514.2 201C471.3 201 428.7 201 385.8 201C343 201 300 201 257.2 201C214.3 201 171.7 201 128.8 201C86 201 43 201 21.5 201L0 201Z" fill="#ffffff" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path>
+      </svg>
+    </section>
+    <!-- End Skills -->
+
+    
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container pb-5">
+        <div class="row text-center mb-5">
+          <div class="col" data-aos="fade-up">
+            <h2>My Projects</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="card shadow-sm ta-justify" style="width: auto; border-radius: 0%" data-aos="fade-up" data-aos-delay="250">
+              <div class="p-2">
+                <div class="parent">
+                  <div class="child">
+                    <img src="img/projects/1.jpg" class="card-img-top" alt="..." />
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+              Tugas mencari bug di website penjualan baju waktu magang kelas 2 smk
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="card shadow-sm ta-justify" style="width: auto; border-radius: 0%" data-aos="fade-up" data-aos-delay="250">
+              <div class="p-2">
+                <div class="parent">
+                  <div class="child">
+                    <img src="img/projects/2.jpg" class="card-img-top" alt="..." />
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                 Tugas waktu Magang kelas 2 smk
+                </p>
+              </div>
+            </div>
+          </div>
+    </section>
+    <!-- End Projects -->
+
+    <!-- Contact -->
+    <section id="contact" class="pb-5">
+      <div class="container">
+        <div class="row text-center mb-5 text-white">
+          <div class="col">
+            <h2>Contact Me</h2>
+          </div>
+        </div>
+        <div class="row text-white justify-content-center">
+          <div class="col-md-4 mb-3">
+            <p><i class="bi bi-envelope "></i> &nbsp;<a href="mailto:deniyayan8@gmail.com" class="text-white">Deniyayan8@gmail.com</a></p>
+            <p><i class="bi bi-whatsapp"></i> &nbsp;<a href="https://wa.me/6285156232793" class="text-white">wa.me</a></p>
+            <p class="text-white"><i class="bi bi-discord"></i> &nbsp;deniyyan</p>
+            <p class="text-white"><i class="bi bi-telephone"></i> &nbsp;+62 857 7347 0981</p>
+          </div>
+          <div class="col-md-4">
+            <div class="alert alert-success alert-dismissible fade show mt-2 d-none my-alert" role="alert">
+              <strong>Tanks!</strong> Pesan Anda telah kami terima.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <form name="submit-to-google-sheet">
+              <div class="mb-3">
+                <label for="name" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="name" aria-describedby="name" name="nama" autocomplete="off" />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="email" name="email" required />
+              </div>
+              <div class="mb-3">
+                <label for="comment">Comments</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="comment" style="height: 100px" name="pesan"></textarea>
+              </div>
+              <button type="submit" id="btn-submit" class="btn btn-secondary">Submit</button>
+              <button id="btn-loading" class="btn btn-secondary d-none" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Contact -->
+
+    <!-- Footer -->
+    <footer class="bg-myfooter text-center pt-3 pb-2 text-white">
+      <p>Created with <i class="bi bi-heart-fill text-danger"></i> by <a href="https://github.com/alfaz86" class="text-warning">Deni Yayan Kuswandi</a></p>
+    </footer>
+    <!-- End Footer -->
+
+    <!-- Session -->
+    <script src="/js/session.js"></script>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <script src="/js/form.js"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/TextPlugin.min.js"></script>
+    <script>
+      gsap.registerPlugin(TextPlugin);
+      gsap.to('.continue-lead', {
+        duration: 2,
+        delay: 2,
+        text: ' | Web Developer',
+      });
+      gsap.from('.text-content', {
+        duration: 1.3,
+        y: -200,
+        opacity: 0,
+        ease: 'bounce',
+      });
+      gsap.from('html', {
+        duration: 2,
+        opacity: 0,
+      });
+    </script>
+
+    <script src="/js/script.js"></script>
+
+    <script src="/js/map.js"></script>
+
+    <script src="/js/like.js"></script>
+
+    <script src="/js/crud.js"></script>
+  </body>
+</html>
